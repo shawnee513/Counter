@@ -38,6 +38,19 @@ class MainActivity : AppCompatActivity() {
         numberInput = findViewById(R.id.activity_main_et_number_input)
         interval = findViewById(R.id.activity_main_et_interval)
         summary = findViewById(R.id.activity_main_tv_summary)
+
+        if(savedInstanceState != null){
+            numberText.text = savedInstanceState.getString("myNumber")
+            interval.setText(savedInstanceState.getString("myInterval"))
+            summary.text = savedInstanceState.getString("mySummary")
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("myNumber", numberText.text.toString())
+        outState.putString("myInterval", interval.text.toString())
+        outState.putString("mySummary", summary.text.toString())
     }
 
     //Get a number from an editText and display it to the screen
